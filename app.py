@@ -12,7 +12,9 @@ db = SQLAlchemy(app)
 #create a db model
 class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(200), nullable=False)
+    email = db.Column(db.String(200), nullable=False)
+    fullname = db.Column(db.String(200), nullable=False)
+    address = db.Column(db.String(200), nullable=False)
     password = db.Column(db.String(200), nullable=False)
     date_joined = db.Column(db.DateTime, default=datetime.utcnow)
 
@@ -23,13 +25,13 @@ class Users(db.Model):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('register.html')
 
-
+'''
 @app.route('/userlist', methods = ['POST', 'GET'])
 def userlist():
     if request.method == "POST":
-        username = request.form["username"]
+        fullname = request.form["username"]
         password = request.form["password"]
 
         new_user = Users(username=username, password=password)
@@ -45,14 +47,39 @@ def userlist():
         users = Users.query.order_by(Users.date_joined)
 
         return render_template('userlist.html', users = users)
+'''
 
-'''@app.route('/login', methods = ['POST', 'GET'])
-def login():
+@app.route('/login')
+def loginrender():
+    return render_template('login.html')
+
+
+@app.route('/register')
+def registerrender():
+    return render_template('register.html')
+
+
+@app.route('/userlogon', methods = ['POST', 'GET'])
+def loginuser():
+    return render_template('login.html')
+
+@app.route('/registerUser', methods = ['POST', 'GET'])
+def registerUser():
     if request.method == 'POST':
-        user = request.form['name']
-        return redirect(url_for('success', name = user))
-    else:
-        user = request.args.get('name')
-        return redirect(url_for('success', name = user))'''
+        email = request.form['email']
+        fullname = request.form['fullname']
+        address = request.form['address']
+        password = request.form['email']
+        new_user = Users(email = email, fullname = fullname, address = address, password = password)
+
+        try:
+            db.session.add(new_user)
+            db.session.commit()
+            return redirect(url_for(login))
+        except:
+            return "There was an error adding user"
+        
+        return redirect(url_for('index', name = user))
+
 if __name__ == '__main__':
     app.run(debug = True)
