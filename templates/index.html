@@ -62,10 +62,14 @@
                         <nav class="main-menu">
                            <ul class="menu-area-main">
                               <li> <a href="/">Home</a> </li>
-                              <li> <a href="/">About</a> </li>
-                              <li class="last"><a href="#"><img
-                                       src="{{ url_for('static', filename='images/search_icon.png')}}" alt="icon" /></a>
-                              </li>
+                              <% if currentUser: %>
+                                 <li> <a href="/">{{ currentUser.fullname }}</a> </li>
+                                 <% endif %>
+                                    <li> <a href="/">About</a> </li>
+                                    <li class="last"><a href="#"><img
+                                             src="{{ url_for('static', filename='images/search_icon.png')}}"
+                                             alt="icon" /></a>
+                                    </li>
                            </ul>
                         </nav>
                      </div>
