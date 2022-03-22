@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
    <!-- basic -->
    <meta charset="utf-8">
@@ -62,14 +61,12 @@
                         <nav class="main-menu">
                            <ul class="menu-area-main">
                               <li> <a href="/">Home</a> </li>
-                              <% if currentUser: %>
-                                 <li> <a href="/">{{ currentUser.fullname }}</a> </li>
-                                 <% endif %>
-                                    <li> <a href="/">About</a> </li>
-                                    <li class="last"><a href="#"><img
-                                             src="{{ url_for('static', filename='images/search_icon.png')}}"
-                                             alt="icon" /></a>
-                                    </li>
+                              <li> <a href="/">About</a> </li>
+                              {% if user != "" %}
+                                 <li> <a href="/">{{ user }}</a> </li>
+                              {% else %}
+                                 <li> <a href="/login">Login / Register</a> </li>
+                              {% endif %}
                            </ul>
                         </nav>
                      </div>
@@ -83,11 +80,6 @@
    <!-- end header -->
    <section>
       <div id="main_slider" class="section carousel slide banner-main" data-ride="carousel">
-         <ol class="carousel-indicators">
-            <li data-target="#main_slider" data-slide-to="0" class="active"></li>
-            <li data-target="#main_slider" data-slide-to="1"></li>
-            <li data-target="#main_slider" data-slide-to="2"></li>
-         </ol>
          <div class="carousel-inner">
             <div class="carousel-item active">
                <div class="container">
@@ -103,28 +95,8 @@
                      </div>
                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                         <div class="img-box">
-                           <figure><img src="{{ url_for('static', filename='images/boksing-gloves.png')}}" alt="img" />
-                           </figure>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="carousel-item">
-               <div class="container">
-                  <div class="row marginii">
-                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                        <div class="carousel-caption ">
-                           <h1>Welcome to <strong class="color">Our Shop</strong></h1>
-                           <p>Browse from a catalogue of 100+ products that will help you in your fight against
-                              Covid-19. All products are 100% original and are manufactured by professionals.</p>
-                           <a class="btn btn-lg btn-primary" href="#" role="button">Buy Now</a>
-                           <a class="btn btn-lg btn-primary" href="/" role="button">About</a>
-                        </div>
-                     </div>
-                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                        <div class="img-box ">
-                           <figure><img src="{{ url_for('static', filename='images/boksing-gloves.png')}}" alt="img" />
+                           <figure>
+                              <img src="{{ url_for('static', filename='images/covid-img.png')}}" alt="img"/>
                            </figure>
                         </div>
                      </div>
@@ -132,11 +104,6 @@
                </div>
             </div>
          </div>
-         <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-            <i class='fa fa-angle-left'></i></a>
-         <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
-            <i class='fa fa-angle-right'></i>
-         </a>
       </div>
    </section>
    <!-- plant -->
@@ -168,7 +135,7 @@
             </div>
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 ">
                <div class="sport_product">
-                  <figure><img src="{{ url_for('static', filename='images/mask.jpg')}}" alt="img" /"></figure>
+                  <figure><img src="{{ url_for('static', filename='images/gloves.jpg')}}" alt="img" /"></figure>
                   <h3> $<strong class="price_text">50</strong></h3>
                   <h4>Gloves</h4>
                </div>

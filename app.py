@@ -24,31 +24,35 @@ class Users(db.Model):
 
 
 @app.route('/')
-def index(user):
-    return render_template('index.html', currentUser = user)
-
+def index():
+    user = ""
+    if request.args:
+        user = request.args['user']
+    return render_template('index.html', user = user)
+'''
 @app.route('/login')
 def loginrender():
     return render_template('login.html')
+'''
 
-
-@app.route('/userlogon', methods = ['POST'])
-def loginuser():
+@app.route('/login', methods = ['POST', 'GET'])
+def login():
+    error = ""
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["passw"]
-        fetchedUser = Users.query.filter_by(email = email).first()
+        fetchedUser = Users.query.filter_by(email = email, password = password).first()
+        print(fetchedUser)
         if fetchedUser:
-            return redirect(url_for('index', fetchedUser))
+            user = fetchedUser.fullname
+            return redirect(url_for('index', user = user, **request.args))
+        else:
+            error = "Invalid credentials!"
+    return render_template('login.html', error = error)
 
-
-@app.route('/register')
-def registerrender():
-    return render_template('register.html')
-
-
-@app.route('/registerUser', methods = ['POST'])
-def registerUser():
+@app.route('/register', methods = ['POST', 'GET'])
+def register():
+    error = ""
     if request.method == 'POST':
         email = request.form['email']
         fullname = request.form['fullname']
@@ -56,13 +60,14 @@ def registerUser():
         password = request.form['passw']
         
         new_user = Users(email = email, fullname = fullname, address = address, password = password)
-        print(new_user.id)
         if new_user:
-            db.session.add(new_user)
-            db.session.commit()
-            return redirect(url_for('loginrender'))
-    else:
-        return redirect(url_for('index'))
+            try:
+                db.session.add(new_user)
+                db.session.commit()
+                return redirect(url_for('login'))
+            except:
+                error = "Couldn't register! User may already exist"
+    return render_template('register.html', error = error)
 
 if __name__ == '__main__':
     app.run(debug = True)

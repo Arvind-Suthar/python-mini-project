@@ -1621,6 +1621,13 @@ input[type="radio"] .styled:checked + label::after {
 .img-box figure img {
   box-shadow: #081b30 0px 0px 0px 0px;
 }
+
+@media only screen and (max-width: 576px){
+  .img-box{
+    display: none;
+  }
+}
+
 .layout_padding {
   padding-top: 90px 0px;
 }
