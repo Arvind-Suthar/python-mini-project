@@ -89,7 +89,7 @@
                            <h1>Welcome to <strong class="color">Our Shop</strong></h1>
                            <p>Browse from a catalogue of 100+ products that will help you in your fight against
                               Covid-19. All products are 100% original and are manufactured by professionals.</p>
-                           <a class="btn btn-lg btn-primary" href="#" role="button">Buy Now</a>
+                           <a class="btn btn-lg btn-primary" href="#plant" role="button">Buy Now</a>
                            <a class="btn btn-lg btn-primary" href="/" role="button">About </a>
                         </div>
                      </div>
@@ -123,55 +123,88 @@
    </div>
    <div class="clothes_main section ">
       <div class="container">
+         {{ userid }}
+         {% if user == "" %}
+            <form action="/checkout/usernotexist" method="POST" class="bg-white">
+         {% else %}
+            <form action="/checkout/{{ user }}" method="POST" class="bg-white">
+         {% endif %}
          <div class="row">
-
-
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
                <div class="sport_product">
-                  <figure><img src="{{ url_for('static', filename='images/mask.jpg')}}" alt="img" /"></figure>
-                  <h3> $<strong class="price_text">50</strong></h3>
+                  <figure><img src="{{ url_for('static', filename='images/mask.jpg')}}" alt="img" /></figure>
+                  <h3>  &#8377; <strong class="price_text">5</strong></h3>
                   <h4>Masks</h4>
+                  <div class="d-flex pt-4">
+                     <input type="number" name="mask" class="form-control" value="0">
+                     <button class="btn btn-primary rounded-0">Add</button>
+                  </div>
                </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 ">
                <div class="sport_product">
                   <figure><img src="{{ url_for('static', filename='images/gloves.jpg')}}" alt="img" /"></figure>
-                  <h3> $<strong class="price_text">50</strong></h3>
+                  <h3>  &#8377; <strong class="price_text">10</strong></h3>
                   <h4>Gloves</h4>
+                  <div class="d-flex pt-4">
+                     <input type="number" name="gloves" class="form-control" value="0">
+                     <button class="btn btn-primary rounded-0">Add</button>
+                  </div>
                </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 ">
                <div class="sport_product">
-                  <figure><img src="{{ url_for('static', filename='images/mask.jpg')}}" alt="img" /"></figure>
-                  <h3> $<strong class="price_text">50</strong></h3>
+                  <figure><img src="{{ url_for('static', filename='images/sanitizer.jpg')}}" alt="img" /"></figure>
+                  <h3>  &#8377; <strong class="price_text">30</strong></h3>
                   <h4>Sanitizers</h4>
+                  <div class="d-flex pt-4">
+                     <input type="number" name="sanitizer" class="form-control" value="0">
+                     <button class="btn btn-primary rounded-0">Add</button>
+                  </div>
                </div>
             </div>
-
-
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
                <div class="sport_product">
-                  <figure><img src="{{ url_for('static', filename='images/mask.jpg')}}" alt="img" /></figure>
-                  <h3> $<strong class="price_text">50</strong></h3>
+                  <figure><img src="{{ url_for('static', filename='images/shield.jpg')}}" alt="img" /></figure>
+                  <h3>  &#8377; <strong class="price_text">150</strong></h3>
                   <h4>Face shield</h4>
+                  <div class="d-flex pt-4">
+                     <input type="number" name="shield" class="form-control" value="0">
+                     <button class="btn btn-primary rounded-0">Add</button>
+                  </div>
                </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 ">
                <div class="sport_product">
-                  <figure><img src="{{ url_for('static', filename='images/mask.jpg')}}" alt="img" /></figure>
-                  <h3> $<strong class="price_text">50</strong></h3>
+                  <figure><img src="{{ url_for('static', filename='images/ppe.jpg')}}" alt="img" /></figure>
+                  <h3>  &#8377; <strong class="price_text">200</strong></h3>
                   <h4> PPE kits</h4>
+                  <div class="d-flex pt-4">
+                     <input type="number" name="ppe" class="form-control" value="0">
+                     <button class="btn btn-primary rounded-0">Add</button>
+                  </div>
                </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 ">
                <div class="sport_product">
-                  <figure><img src="{{ url_for('static', filename='images/mask.jpg')}}" alt="img" /></figure>
-                  <h3> $<strong class="price_text">50</strong></h3>
+                  <figure><img src="{{ url_for('static', filename='images/vitamin.jpg')}}" alt="img" /></figure>
+                  <h3>  &#8377; <strong class="price_text">350</strong></h3>
                   <h4>Multi Vitamins</h4>
+                  <div class="d-flex pt-4">
+                     <input type="number" name="vitamin" class="form-control" value="0">
+                     <button class="btn btn-primary rounded-0">Add</button>
+                  </div>
                </div>
             </div>
-
          </div>
+         <div class="row">
+            <div class="col">
+               <div class="d-flex justify-content-center">
+                  <input type="submit" value="Checkout" class="btn btn-success btn-lg">
+               </div>
+            </div>
+         </div>
+      </form>
       </div>
    </div>
    </div>
@@ -183,9 +216,7 @@
             <div class="col-12">
                <div class="titlepage">
                   <h2><strong class="black"> Featured</strong> Categories</h2>
-                  <span>There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                     alteration in some form, by injected randomised words which don't look even slightly
-                     believable</span>
+                  <span>Here are some of our best manufactured products which are most bought. Take a look!</span>
                </div>
             </div>
          </div>
@@ -199,7 +230,6 @@
          <ol class="carousel-indicators">
             <li data-target="#main_slider" data-slide-to="0" class="active">1</li>
             <li data-target="#main_slider" data-slide-to="1">2</li>
-            <li data-target="#main_slider" data-slide-to="2">3</li>
          </ol>
          <div class="carousel-inner">
             <div class="carousel-item active">
@@ -207,14 +237,13 @@
                   <div class="row marginii">
                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                         <div class="carousel-sporrt_text ">
-                           <h1 class="sporrt_text">Our best selling product</h1>
-                           <p class="lorem_text">There are many variations of passages of Lorem Ipsum available, but the
-                              majority have suffered alteration in some form, by injected randomised words which don't
-                              look even slightly believableThere are many variations of passages of Lorem Ipsum
-                              available, but the majority have suffered alteration in some form, by injected randomised
-                              words which don't look even slightly believable</p>
+                           <h1 class="sporrt_text">Masks</h1>
+                           <p class="lorem_text">Our masks are delivered from trusted and most noted companies around the world.
+                              They are of superior quality and have been tested for their use thoroughly. The masks are safe to use 
+                              by any age group and can also be used for non-medical purposes i.e. When cleaning. 
+                           </p>
                            <div class="btn_main">
-                              <a class="btn btn-lg btn-primary" href="#" role="button">Read More</a>
+                              <a class="btn btn-lg btn-primary" href="#plant" role="button">Buy now</a>
                            </div>
                         </div>
                      </div>
@@ -232,45 +261,19 @@
                   <div class="row marginii">
                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                         <div class="carousel-sporrt_text ">
-                           <h1 class="sporrt_text">Best sports item shop our</h1>
-                           <p class="lorem_text">There are many variations of passages of Lorem Ipsum available, but the
-                              majority have suffered alteration in some form, by injected randomised words which don't
-                              look even slightly believableThere are many variations of passages of Lorem Ipsum
-                              available, but the majority have suffered alteration in some form, by injected randomised
-                              words which don't look even slightly believable</p>
+                           <h1 class="sporrt_text">Gloves</h1>
+                           <p class="lorem_text">Our gloves are made from trusted chemicals like latex and polyvinyl chloride. Our 
+                              gloves are powdered with corn starch instead of harmful chemicals to keep your hands safe. These gloves 
+                              are guaranteed to keep you safe and also dont trigger any alergies.
+                           </p>
                            <div class="btn_main">
-                              <a class="btn btn-lg btn-primary" href="#" role="button">Read More</a>
+                              <a class="btn btn-lg btn-primary" href="#plant" role="button">Buy now</a>
                            </div>
                         </div>
                      </div>
                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                         <div class="img-box ">
-                           <figure><img src="{{ url_for('static', filename='images/child-image.png')}}"
-                                 style="max-width: 100%; border: 15px solid #fff;" /></figure>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="carousel-item">
-               <div class="container">
-                  <div class="row marginii">
-                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                        <div class="carousel-sporrt_text ">
-                           <h1 class="sporrt_text">Best sports item shop our</h1>
-                           <p class="lorem_text">There are many variations of passages of Lorem Ipsum available, but the
-                              majority have suffered alteration in some form, by injected randomised words which don't
-                              look even slightly believableThere are many variations of passages of Lorem Ipsum
-                              available, but the majority have suffered alteration in some form, by injected randomised
-                              words which don't look even slightly believable</p>
-                           <div class="btn_main">
-                              <a class="btn btn-lg btn-primary" href="#" role="button">Read More</a>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                        <div class="img-box">
-                           <figure><img src="{{ url_for('static', filename='images/child-image.png')}}"
+                           <figure><img src="{{ url_for('static', filename='images/gloves.jpg')}}"
                                  style="max-width: 100%; border: 15px solid #fff;" /></figure>
                         </div>
                      </div>

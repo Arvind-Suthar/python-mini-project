@@ -28,12 +28,30 @@ def index():
     user = ""
     if request.args:
         user = request.args['user']
-    return render_template('index.html', user = user)
+        userid = request.args['userid']
+    return render_template('index.html', user = user, userid = userid)
 '''
 @app.route('/login')
 def loginrender():
     return render_template('login.html')
 '''
+@app.route('/checkout/<name>', methods = ['POST'])
+def checkout(name):
+    if request.method == 'POST':
+        if name == "usernotexists":
+            return redirect(url_for("login"))
+        else:
+            mask = int(request.form['mask'])
+            gloves = int(request.form['gloves'])
+            ppe = int(request.form['ppe'])
+            sanitizer = int(request.form['sanitizer'])
+            shield = int(request.form['shield'])
+            vitamin = int(request.form['vitamin'])
+            return render_template('checkout.html', user = name, mask = mask, gloves = gloves, ppe = ppe, sanitizer = sanitizer, shield = shield, vitamin = vitamin)
+
+    return redirect(url_for('index'))
+
+
 
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
@@ -45,7 +63,8 @@ def login():
         print(fetchedUser)
         if fetchedUser:
             user = fetchedUser.fullname
-            return redirect(url_for('index', user = user, **request.args))
+            userid = fetchedUser.id
+            return redirect(url_for('index', user = user, userid = userid, **request.args))
         else:
             error = "Invalid credentials!"
     return render_template('login.html', error = error)
