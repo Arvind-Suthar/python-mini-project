@@ -28,8 +28,7 @@ def index():
     user = ""
     if request.args:
         user = request.args['user']
-        userid = request.args['userid']
-    return render_template('index.html', user = user, userid = userid)
+    return render_template('index.html', user = user)
 '''
 @app.route('/login')
 def loginrender():
@@ -47,7 +46,9 @@ def checkout(name):
             sanitizer = int(request.form['sanitizer'])
             shield = int(request.form['shield'])
             vitamin = int(request.form['vitamin'])
-            return render_template('checkout.html', user = name, mask = mask, gloves = gloves, ppe = ppe, sanitizer = sanitizer, shield = shield, vitamin = vitamin)
+            total = mask*5 + gloves*10 + sanitizer*30 + ppe*200 + vitamin*350 + shield*150
+            gst = round(total*0.03, 2)
+            return render_template('checkout.html', user = name, mask = mask, gloves = gloves, ppe = ppe, total = total, gst = gst, sanitizer = sanitizer, shield = shield, vitamin = vitamin)
 
     return redirect(url_for('index'))
 
@@ -64,7 +65,7 @@ def login():
         if fetchedUser:
             user = fetchedUser.fullname
             userid = fetchedUser.id
-            return redirect(url_for('index', user = user, userid = userid, **request.args))
+            return redirect(url_for('index', user = user, **request.args))
         else:
             error = "Invalid credentials!"
     return render_template('login.html', error = error)
