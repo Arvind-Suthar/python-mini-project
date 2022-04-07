@@ -34,6 +34,11 @@ def index():
 def loginrender():
     return render_template('login.html')
 '''
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 @app.route('/checkout/<name>', methods = ['POST'])
 def checkout(name):
     if request.method == 'POST':
@@ -51,8 +56,6 @@ def checkout(name):
             return render_template('checkout.html', user = name, mask = mask, gloves = gloves, ppe = ppe, total = total, gst = gst, sanitizer = sanitizer, shield = shield, vitamin = vitamin)
 
     return redirect(url_for('index'))
-
-
 
 @app.route('/login', methods = ['POST', 'GET'])
 def login():

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <title>Covi Shop - About</title>
+    <style>
+        .navbar-nav{
+            color: #fff;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .navbar-nav li{
+            padding: 1rem;
+        }
+        .navbar-nav li.nav-item a{
+            color: rgb(215, 225, 240);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+   <header class="section bg-primary text-white">
+          <!-- header inner -->
+          <div class="header">
+            <div class="container">
+               <div class="row">
+                  <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col logo_section d-flex align-items-center">
+                     <div class="full">
+                        <div class="center-desk">
+                           <h3 class="text-white">Covi-Shop</h3>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-xl-8 col-lg-8 col-md-8 col-sm-9">
+                     <div class="menu-area">
+                        <div class="limit-box">
+                           <nav class="main-menu">
+                              <ul class="navbar-nav">
+                                 <li class="nav-item active"> <a href="/">Home</a> </li>
+                                 <li class="nav-item"> <a href="/about">About</a> </li>
+                                 {% if user != "" and user != Null %}
+                                    <li class="nav-item"> <a href="/login">{{ user }}</a> </li>
+                                 {% else %}
+                                    <li class="nav-item"> <a href="/login">Login / Register</a> </li>
+                                 {% endif %}
+                              </ul>
+                           </nav>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- end header inner -->
+   </header>
+
+
+    <header class="py-5">
+        <div class="container px-lg-5">
+            <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
+                <div class="m-4 m-lg-5">
+                    <h1 class="">
+                        Welcome to our Covi Shop
+                    </h1>
+                    <p class="fs-4">
+                        Browse from a catalogue of 100+ products that will help you in your fight against
+                              Covid-19. All products are 100% original and are manufactured by professionals
+                    </p>
+                    <a href="/" class="btn btn-primary btn-lg">Buy now</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="pt-4">
+        <div class="container px-lg-5">
+            <!-- Page Features-->
+            <div class="row gx-lg-5">
+                <div class="col-lg-6 col-xxl-4 mb-5">
+                    <div class="card bg-light border-0 h-100">
+                        <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                            <div class="feature mb-4 mt-n4">
+                                <i class='bx bx-cart bg-primary bg-gradient text-white rounded-3 p-4 display-6'></i>
+                            </div>
+                            <h2 class="fs-4 fw-bold">Fresh New Stock</h2>
+                            <p class="mb-0">We replace our stock every few weeks so that you don't get outdated supplies.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xxl-4 mb-5">
+                    <div class="card bg-light border-0 h-100">
+                        <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                            <div class="feature mb-4 mt-n4">
+                                <i class='bx bx-rupee bg-primary bg-gradient text-white rounded-3 p-4 display-6'></i>
+                            </div>
+                            <h2 class="fs-4 fw-bold">Big Discounts</h2>
+                            <p class="mb-0">All our products are at big discounted products so that money doesn't get in the way of health.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xxl-4 mb-5">
+                    <div class="card bg-light border-0 h-100">
+                        <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                            <div class="feature mb-4 mt-n4">
+                                <i class='bx bx-certification bg-primary bg-gradient text-white rounded-3 p-4 display-6'></i>
+                            </div>
+                            <h2 class="fs-4 fw-bold">Genuine Products</h2>
+                            <p class="mb-0">All our products are from trusted brands and been tested for their safety and benefits.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xxl-4 mb-5">
+                    <div class="card bg-light border-0 h-100">
+                        <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                            <div class="feature mb-4 mt-n4">
+                                <i class='bx bx-plus-medical bg-primary bg-gradient text-white rounded-3 p-4 display-6'></i>
+                            </div>
+                            <h2 class="fs-4 fw-bold">Convenient</h2>
+                            <p class="mb-0">You can order and get all your supplies delivered from the safety of your home.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

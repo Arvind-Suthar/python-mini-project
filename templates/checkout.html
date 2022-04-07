@@ -119,14 +119,35 @@
                     <h5>Grand Total</h5>
                     <span>{{ gst+total }}</span>
                 </div>
-                <button class="btn btn-success btn-block w-100 my-3">Buy Now</button>
+                    <button class="btn btn-success btn-block w-100 my-3" data-toggle="modal" data-target="#exampleModal">Buy Now</button>
                 <a href="/?user={{ user }}" class="btn btn-outline-danger btn-block w-100">Back to Shop</a>
             </div>
         </div>
     </div>
-
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Order Successfull!</h5>
+            </div>
+            <div class="modal-body">
+              Your order has been placed!<br>
+              The order total is {{ gst + total }} <br>
+            </div>
+            <div class="modal-footer">
+              <a type="button" href="/" class="btn btn-success">Continue</a>
+            </div>
+          </div>
+        </div>
+      </div>
     <script src="{{ url_for('static', filename='js/jquery.min.js')}}"></script>
     <script src="{{ url_for('static', filename='js/popper.min.js')}}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
+    <script>
+        function buynow(){
+            var total = "<% total %>";
+            alert("Total of Order is " + total);
+        }
+    </script>
 </body>
 </html>
